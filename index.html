@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Loja | PF Esportes – Colíder - MT</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--verde:#0d0d0d;--grama:#d11a26;--ouro:#e11d2a;--giz:#f5f5f5;--tinta:#111111;--cinza:#666666;--linha:#e2e2e2;box-sizing:border-box}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Barlow,system-ui,sans-serif;background:var(--giz);color:var(--tinta)}
+h1,h2,h3,.logo{font-family:'Barlow Condensed','Arial Narrow',sans-serif;margin:0}
+button{font-family:inherit}
+.aviso{background:var(--ouro);color:#fff;text-align:center;font-weight:600;font-size:14px;padding:calc(6px + env(safe-area-inset-top,0)) 10px 6px}
+header{position:sticky;top:0;z-index:20;background:var(--verde);color:#fff}
+.topo{display:flex;align-items:center;gap:10px;max-width:1100px;margin:auto;padding:10px 14px}
+.logo{font-size:26px;font-weight:700;color:#fff;text-decoration:none;white-space:nowrap}
+.logo b{color:var(--ouro)}
+.busca{flex:1;min-width:0}
+.busca input{width:100%;border:0;border-radius:999px;padding:10px 16px;font:500 16px Barlow,sans-serif}
+.cbtn{border:0;color:#fff;background:var(--ouro);border-radius:999px;padding:9px 14px;font-weight:700;font-size:15px;cursor:pointer}
+.cbtn span{margin-left:4px;background:var(--tinta);color:#fff;border-radius:99px;font-size:13px;padding:1px 7px}
+nav{max-width:1100px;margin:auto;display:flex;gap:4px;overflow-x:auto;padding:0 10px 8px;scrollbar-width:none}
+nav::-webkit-scrollbar,.fila::-webkit-scrollbar,.marcas::-webkit-scrollbar{display:none}
+nav button{flex:none;border:0;background:none;color:#d6d6d6;font-weight:600;font-size:16px;padding:6px 12px;border-bottom:3px solid transparent;cursor:pointer}
+nav button[aria-current="true"]{color:#fff;border-color:var(--ouro)}
+.banner{position:relative;overflow:hidden;background:var(--verde)}
+.slides{display:flex;transition:transform .5s}
+.slide{flex:none;width:100%;min-height:260px;padding:34px 18px 54px;color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
+.slide:nth-child(1){background:linear-gradient(120deg,#0d0d0d,#8a0f19)}
+.slide:nth-child(2){background:linear-gradient(120deg,#111111,#2e2e2e)}
+.slide:nth-child(3){background:linear-gradient(120deg,#c4131f,#0d0d0d 75%)}
+.slide>*{max-width:1100px;width:100%;margin-left:auto;margin-right:auto}
+.slide h2{font-size:clamp(36px,9vw,64px);line-height:1;font-weight:700;max-width:14ch}
+.slide p{margin:10px auto 16px;max-width:42ch;opacity:.92}
+.slide .ver{width:auto;border:0;background:var(--ouro);color:#fff;border-radius:8px;padding:12px 20px;font-weight:700;font-size:16px;cursor:pointer}
+.slide svg{position:absolute;right:-20px;bottom:10px;width:min(52%,340px);opacity:.95;pointer-events:none}
+.pontos{position:absolute;bottom:14px;left:0;right:0;display:flex;justify-content:center;gap:8px}
+.pontos button{width:11px;height:11px;border-radius:50%;border:0;background:#ffffff66;padding:0;cursor:pointer}
+.pontos button[aria-current="true"]{background:var(--ouro)}
+section.bloco{max-width:1100px;margin:auto;padding:26px 14px 0}
+.bloco h2{font-size:30px;font-weight:700;margin-bottom:4px}
+.bloco>p{margin:0 0 12px;color:var(--cinza)}
+.tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media(min-width:700px){.tiles{grid-template-columns:repeat(4,1fr)}}
+.tile{border:1px solid var(--linha);background:#fff;border-radius:12px;overflow:hidden;cursor:pointer;padding:0;text-align:left}
+.tile .foto{aspect-ratio:4/3}
+.tile b{display:block;padding:8px 12px 10px;font-size:17px}
+.foto{position:relative;background:#efefef}
+.foto svg,.foto img{display:block;width:100%;height:100%;object-fit:cover;aspect-ratio:4/3}
+.foto em{position:absolute;left:8px;bottom:6px;font-size:11px;font-style:normal;color:var(--cinza);background:#ffffffd9;padding:2px 7px;border-radius:99px}
+.fila{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px;scrollbar-width:none}
+.fila .card{flex:none;width:min(240px,64vw);scroll-snap-align:start}
+.marcas{display:flex;gap:8px;overflow-x:auto;padding:4px 0 8px;scrollbar-width:none}
+.chip{flex:none;border:1.5px solid var(--linha);background:#fff;border-radius:999px;padding:8px 15px;font-weight:600;font-size:15px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ouro);border-color:var(--ouro);color:#fff}
+.cont{margin:6px 2px 10px;color:var(--cinza);font-size:14px}
+.grade{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(min-width:700px){.grade{grid-template-columns:repeat(3,1fr);gap:16px}}
+@media(min-width:980px){.grade{grid-template-columns:repeat(4,1fr)}}
+.card{background:#fff;border:1px solid var(--linha);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.info{padding:10px 12px 12px;display:flex;flex-direction:column;gap:2px;flex:1}
+.info small{color:var(--cinza);font-size:13px}
+.info h3{font-size:20px;font-weight:600;line-height:1.1}
+.preco{font-weight:700;color:var(--grama)}
+.add{margin-top:auto;border:0;background:var(--verde);color:#fff;border-radius:8px;padding:10px;font-weight:600;font-size:15px;cursor:pointer}
+.vazio{padding:40px 10px;text-align:center;color:var(--cinza)}
+.passos{display:grid;gap:10px;margin-top:6px}
+@media(min-width:700px){.passos{grid-template-columns:repeat(3,1fr)}}
+.passos div{background:#fff;border:1px solid var(--linha);border-radius:12px;padding:14px}
+.passos b{display:block;font-size:18px;margin-bottom:2px}
+footer{margin-top:36px;background:var(--verde);color:#d6d6d6;text-align:center;padding:24px 14px calc(24px + env(safe-area-inset-bottom,0));font-size:14px;line-height:1.6}
+footer a{color:#ff5c5c}
+.fundo{position:fixed;inset:0;background:#00000080;opacity:0;pointer-events:none;transition:opacity .2s;z-index:30}
+.fundo.on{opacity:1;pointer-events:auto}
+.gaveta{position:fixed;top:0;right:0;bottom:0;width:min(400px,100%);background:#fff;z-index:40;transform:translateX(100%);transition:transform .25s;display:flex;flex-direction:column}
+.gaveta.on{transform:none}
+.gh{background:var(--verde);color:#fff;display:flex;justify-content:space-between;align-items:center;padding:calc(14px + env(safe-area-inset-top,0)) 16px 14px}
+.gh h2{font-size:26px}
+.fechar{border:0;background:none;color:#fff;font-size:30px;line-height:1;cursor:pointer}
+.itens{flex:1;overflow-y:auto;padding:8px 16px}
+.item{display:flex;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--linha)}
+.mini{width:64px;flex:none;border-radius:8px;overflow:hidden}
+.item .t{flex:1;min-width:0;font-weight:600;line-height:1.15}
+.item .t small{display:block;font-weight:400;color:var(--cinza)}
+.qtd{display:flex;align-items:center;gap:6px}
+.qtd button{width:30px;height:30px;border-radius:50%;border:1.5px solid var(--linha);background:#fff;font-size:18px;cursor:pointer}
+.rodape{padding:14px 16px calc(14px + env(safe-area-inset-bottom,0));border-top:1px solid var(--linha)}
+.rodape p{margin:0 0 10px;font-size:14px;color:var(--cinza)}
+.zap{display:block;text-align:center;text-decoration:none;background:#1faa59;color:#fff;border-radius:10px;padding:13px;font-weight:700;font-size:16px}
+.zap[aria-disabled="true"]{background:#b9c4bd;pointer-events:none}
+.limpar{margin-top:8px;width:100%;border:0;background:none;color:var(--cinza);font-size:14px;text-decoration:underline;cursor:pointer}
+:focus-visible{outline:3px solid var(--ouro);outline-offset:2px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+.card a.foto,.card a.tit{color:inherit;text-decoration:none;display:block}
+.det{max-width:1100px;margin:auto;padding:14px}
+.voltar{border:0;background:none;font-weight:600;font-size:16px;color:var(--grama);cursor:pointer;padding:6px 0;margin-bottom:8px}
+.dgrid{display:grid;gap:18px}
+@media(min-width:800px){.dgrid{grid-template-columns:1.1fr 1fr}}
+.grande{border-radius:12px;overflow:hidden;border:1px solid var(--linha)}
+.mins{display:flex;gap:8px;margin-top:8px;overflow-x:auto}
+.mins button{flex:none;width:76px;padding:0;border:2px solid var(--linha);border-radius:8px;overflow:hidden;background:none;cursor:pointer}
+.mins button[aria-current="true"]{border-color:var(--grama)}
+.mins svg,.mins img{display:block;width:100%;height:auto}
+.det h1{font-size:38px;line-height:1.05;font-weight:700;margin:2px 0 6px}
+.tams{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 14px}
+.tam{min-width:46px;border:1.5px solid var(--linha);background:#fff;border-radius:8px;padding:9px 10px;font-weight:600;font-size:15px;cursor:pointer}
+.tam[aria-pressed="true"]{background:var(--verde);border-color:var(--verde);color:#fff}
+.addd{border:0;background:var(--verde);color:#fff;border-radius:8px;width:100%;padding:14px;font-weight:600;font-size:17px;cursor:pointer}
+.aval{margin-top:30px}
+.aval h2{font-size:30px}
+.estrelas{color:#e0a800;letter-spacing:2px;margin-left:6px}
+.rev{background:#fff;border:1px solid var(--linha);border-radius:12px;padding:12px;margin-top:10px}
+.aval form{display:grid;gap:8px;margin-top:14px;background:#fff;border:1px solid var(--linha);border-radius:12px;padding:12px}
+.aval input,.aval select,.aval textarea{font:500 16px Barlow,sans-serif;padding:10px;border:1.5px solid var(--linha);border-radius:8px;width:100%}
+.aval small{color:var(--cinza)}
+</style>
+</head>
+<body>
+<div class="aviso">Escolha no site e feche o pedido pelo WhatsApp da loja</div>
+<header>
+  <div class="topo">
+    <a class="logo" href="./">PF<b>.</b>ESPORTES</a>
+    <div class="busca"><input id="q" type="search" placeholder="Pesquisar…" aria-label="Pesquisar produtos"></div>
+    <button class="cbtn" id="abrir" aria-label="Abrir carrinho">Carrinho<span id="n">0</span></button>
+  </div>
+  <nav id="menu" aria-label="Categorias"></nav>
+</header>
+
+<div id="home"><div class="banner" aria-roledescription="carrossel">
+  <div class="slides" id="slides">
+    <div class="slide"><h2>Chuteiras para o seu jogo</h2><p>Umbro, Adidas e Joma para campo e society.</p><button class="ver" data-ir="Chuteiras">Ver chuteiras</button></div>
+    <div class="slide"><h2>Tênis para treinar e para o dia a dia</h2><p>Nike, Adidas, Fila, Joma e Umbro.</p><button class="ver" data-ir="Tênis">Ver tênis</button></div>
+    <div class="slide"><h2>Camisas e kits infantis</h2><p>Roupas esportivas e casuais para toda a família.</p><button class="ver" data-ir="Roupas">Ver roupas</button></div>
+  </div>
+  <div class="pontos" id="pontos"></div>
+</div>
+
+<section class="bloco">
+  <h2>Escolha pela categoria</h2>
+  <p>Toque para ver os modelos.</p>
+  <div class="tiles" id="tiles"></div>
+</section>
+
+<section class="bloco">
+  <h2>Destaques</h2>
+  <p>Alguns modelos para começar.</p>
+  <div class="fila" id="dest"></div>
+</section>
+
+<section class="bloco" id="catalogo">
+  <h2 id="titulo">Todos os produtos</h2>
+  <div class="marcas" id="marcas" role="group" aria-label="Marcas"></div>
+  <p class="cont" id="cont"></p>
+  <div class="grade" id="grade"></div>
+</section>
+
+<section class="bloco">
+  <h2>Como comprar</h2>
+  <div class="passos">
+    <div><b>1. Escolha</b>Navegue ou pesquise e toque em “Adicionar ao carrinho”.</div>
+    <div><b>2. Envie o pedido</b>No carrinho, toque em “Enviar pedido pelo WhatsApp”.</div>
+    <div><b>3. Confirme</b>A loja informa valores, tamanhos e a forma de pagamento.</div>
+  </div>
+</section>
+
+</div><main id="detalhe" class="det" hidden></main>
+<footer>
+  <b>PF Esportes</b><br>
+  Av. Marechal Cândido Rondon, 1277, Centro, Colíder - MT<br>
+  <a href="https://wa.me/5566999997003">WhatsApp (66) 99999-7003</a> · <a href="https://www.instagram.com/pfesportescolider/">@pfesportescolider</a> · <a href="./">Voltar ao site</a><br>
+  <small>As imagens são ilustrações. Os produtos reais podem ter outra cor e modelo.</small>
+</footer>
+
+<div class="fundo" id="fundo"></div>
+<aside class="gaveta" id="gaveta" aria-label="Carrinho" aria-hidden="true">
+  <div class="gh"><h2>Seu carrinho</h2><button class="fechar" id="fechar" aria-label="Fechar carrinho">×</button></div>
+  <div class="itens" id="itens"></div>
+  <div class="rodape">
+    <p>Não há pagamento aqui. O pedido vai para o WhatsApp da loja.</p>
+    <a class="zap" id="zap" href="#" target="_blank" rel="noopener" aria-disabled="true">Enviar pedido pelo WhatsApp</a>
+    <button class="limpar" id="limpar">Esvaziar carrinho</button>
+  </div>
+</aside>
+
+<script>
+// FOTO REAL: coloque o arquivo na pasta do site e preencha img, ex.: img:"fotos/velocita.jpg"
+// PREÇO: preencha preco, ex.: preco:299.9 (vazio = não mostra). DESTAQUE: dest:1
+var P=[
+ {id:1,nome:"Chuteira Umbro Velocita",marca:"Umbro",cat:"Chuteiras",tipo:"chuteira",c:["#1b3b94","#ffffff"],dest:1},
+ {id:2,nome:"Chuteira Umbro Pro 5",marca:"Umbro",cat:"Chuteiras",tipo:"chuteira",c:["#111111","#f2c230"]},
+ {id:3,nome:"Chuteira Umbro Challenge",marca:"Umbro",cat:"Chuteiras",tipo:"chuteira",c:["#d62828","#ffffff"]},
+ {id:4,nome:"Chuteira Adidas F50 Society",marca:"Adidas",cat:"Chuteiras",tipo:"chuteira",c:["#2aa8e0","#111111"],dest:1},
+ {id:5,nome:"Chuteira Joma Society",marca:"Joma",cat:"Chuteiras",tipo:"chuteira",c:["#e63946","#111111"]},
+ {id:6,nome:"Tênis de treino Nike",marca:"Nike",cat:"Tênis",tipo:"tenis",c:["#111111","#ff6b1a"],dest:1},
+ {id:7,nome:"Tênis casual Adidas",marca:"Adidas",cat:"Tênis",tipo:"tenis",c:["#ffffff","#111111"],dest:1},
+ {id:8,nome:"Tênis esportivo Fila",marca:"Fila",cat:"Tênis",tipo:"tenis",c:["#0b2a6b","#d62828"]},
+ {id:9,nome:"Tênis de corrida Joma",marca:"Joma",cat:"Tênis",tipo:"tenis",c:["#f2c230","#111111"]},
+ {id:10,nome:"Tênis casual Umbro",marca:"Umbro",cat:"Tênis",tipo:"tenis",c:["#e8e4d8","#1b3b94"]},
+ {id:11,nome:"Sapatênis Penalty",marca:"Penalty",cat:"Sapatos",tipo:"sapato",c:["#6b4a2f","#e8d9c0"]},
+ {id:12,nome:"Sapatênis de couro Fila",marca:"Fila",cat:"Sapatos",tipo:"sapato",c:["#1a1a1a","#d62828"]},
+ {id:13,nome:"Camisa de treino Umbro",marca:"Umbro",cat:"Roupas",tipo:"camisa",c:["#1b3b94","#ffffff"]},
+ {id:14,nome:"Camiseta Nike",marca:"Nike",cat:"Roupas",tipo:"camisa",c:["#111111","#ffffff"]},
+ {id:15,nome:"Camisa casual Fila",marca:"Fila",cat:"Roupas",tipo:"camisa",c:["#ffffff","#0b2a6b"]},
+ {id:16,nome:"Kit infantil de clube",marca:"Clubes",cat:"Roupas",tipo:"kit",c:["#d62828","#111111"],dest:1}
+];
+var CATS=["Todos","Chuteiras","Tênis","Sapatos","Roupas"],MARCAS=["Todas","Umbro","Penalty","Joma","Fila","Nike","Adidas"];
+var cat="Todos",marca="Todas",busca="",cart={},$=function(i){return document.getElementById(i)};
+try{cart=JSON.parse(localStorage.getItem("pf_cart")||"{}")||{}}catch(e){cart={}}
+function norm(s){return s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"")}
+function ilus(p){
+  var a=p.c[0],b=p.c[1],s='<svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustração: '+p.nome+'"><rect width="200" height="150" fill="#efefef"/><ellipse cx="100" cy="124" rx="78" ry="7" fill="#000" opacity=".1"/>';
+  if(p.tipo=="camisa"||p.tipo=="kit"){
+    s+='<path d="M68 26 L42 40 L22 68 L42 82 L58 70 L58 122 L142 122 L142 70 L158 82 L178 68 L158 40 L132 26 Q100 48 68 26Z" fill="'+a+'" stroke="#0004" stroke-width="1.5"/><path d="M68 26 Q100 48 132 26" fill="none" stroke="'+b+'" stroke-width="5"/><rect x="58" y="86" width="84" height="8" fill="'+b+'" opacity=".85"/>';
+    if(p.tipo=="kit")s+='<rect x="68" y="128" width="64" height="12" rx="3" fill="'+b+'"/>';
+  }else{
+    var alto=p.tipo=="sapato"?'M30 98 Q32 74 56 72 L112 76 Q152 80 184 98Z':'M30 98 L36 52 Q38 42 50 44 L76 52 Q96 58 110 72 L150 80 Q182 84 184 98Z';
+    s+='<path d="'+alto+'" fill="'+a+'" stroke="#0004" stroke-width="1.5"/><path d="M12 104 Q12 96 24 96 L176 96 Q192 96 192 106 Q192 114 180 114 L24 114 Q12 114 12 104Z" fill="'+(a=="#ffffff"||a=="#e8e4d8"?"#cfcfc6":b)+'" stroke="#0004" stroke-width="1.5"/>';
+    if(p.tipo=="chuteira")for(var i=0;i<6;i++)s+='<rect x="'+(28+i*28)+'" y="114" width="9" height="9" rx="2" fill="#333"/>';
+    s+=p.tipo=="sapato"?'<path d="M58 78 L108 80" stroke="'+b+'" stroke-width="3" stroke-linecap="round"/>':'<path d="M62 54 L86 62 M70 48 L94 58 M80 45 L104 56" stroke="'+b+'" stroke-width="3" stroke-linecap="round"/>';
+    s+='<path d="M120 84 Q150 86 176 94" stroke="'+b+'" stroke-width="5" fill="none" stroke-linecap="round"/>';
+  }
+  return s+'</svg>';
+}
+function foto(p){return p.img?'<img src="'+p.img+'" alt="'+p.nome+'" loading="lazy">':ilus(p)}
+function card(p){return '<article class="card"><a class="foto" href="#p/'+p.id+'">'+foto(p)+(p.img?'':'<em>Foto ilustrativa</em>')+'</a><div class="info"><small>'+p.marca+' · '+p.cat+'</small><a class="tit" href="#p/'+p.id+'"><h3>'+p.nome+'</h3></a>'+(p.preco?'<span class="preco">'+p.preco.toLocaleString("pt-BR",{style:"currency",currency:"BRL"})+'</span>':'')+'<button class="add" data-id="'+p.id+'">Adicionar ao carrinho</button></div></article>'}
+function chips(el,l,at,fn,cls){el.innerHTML="";l.forEach(function(x){var b=document.createElement("button");b.className=cls;b.textContent=x;b.setAttribute(cls=="chip"?"aria-pressed":"aria-current",x==at);b.onclick=function(){fn(x)};el.appendChild(b)})}
+function ir(c,rolar){if($("home").hidden){history.pushState(null,"",location.pathname);rota()}cat=c;marca="Todas";desenhar();if(rolar)$("catalogo").scrollIntoView()}
+function desenhar(){
+  chips($("menu"),CATS,cat,function(x){ir(x,true)},"");
+  chips($("marcas"),MARCAS,marca,function(x){marca=x;desenhar()},"chip");
+  var q=norm(busca),l=P.filter(function(p){return(cat=="Todos"||p.cat==cat)&&(marca=="Todas"||p.marca==marca)&&(!q||norm(p.nome+" "+p.marca+" "+p.cat).indexOf(q)>-1)});
+  $("titulo").textContent=cat=="Todos"?"Todos os produtos":cat;
+  $("cont").textContent=l.length+(l.length==1?" produto":" produtos");
+  $("grade").innerHTML=l.length?l.map(card).join(""):'<div class="vazio" style="grid-column:1/-1">Nada encontrado. Tente outra palavra ou escolha “Todos” e “Todas”.</div>'
+}
+function pegar(id){id=String(id).split("|")[0];return P.filter(function(p){return p.id==id})[0]}
+function salvar(){try{localStorage.setItem("pf_cart",JSON.stringify(cart))}catch(e){}}
+function carrinho(){
+  var ids=Object.keys(cart).filter(function(k){return cart[k]>0}),t=0;ids.forEach(function(k){t+=cart[k]});
+  $("n").textContent=t;var z=$("zap");
+  if(!ids.length){$("itens").innerHTML='<div class="vazio">O carrinho está vazio. Toque em “Adicionar ao carrinho” nos produtos.</div>';z.setAttribute("aria-disabled","true");z.href="#";return}
+  $("itens").innerHTML=ids.map(function(k){var p=pegar(k);return '<div class="item"><div class="mini">'+foto(p)+'</div><div class="t">'+p.nome+'<small>'+p.marca+(k.indexOf("|")>-1?" · Tam. "+k.split("|")[1]:"")+'</small></div><div class="qtd"><button data-m="'+k+'" aria-label="Diminuir">−</button><b>'+cart[k]+'</b><button data-p="'+k+'" aria-label="Aumentar">+</button></div></div>'}).join("");
+  var msg="Olá! Quero consultar estes itens da PF Esportes:\n"+ids.map(function(k){return "- "+cart[k]+"x "+pegar(k).nome+(k.indexOf("|")>-1?" (tam. "+k.split("|")[1]+")":"")}).join("\n")+"\nPode me passar valores e tamanhos disponíveis?";
+  z.href="https://wa.me/5566999997003?text="+encodeURIComponent(msg);z.removeAttribute("aria-disabled")
+}
+function gaveta(on){$("gaveta").classList.toggle("on",on);$("fundo").classList.toggle("on",on);$("gaveta").setAttribute("aria-hidden",!on)}
+document.addEventListener("click",function(e){
+  var b=e.target.closest(".add");
+  if(b){var id=b.dataset.id;cart[id]=(cart[id]||0)+1;salvar();carrinho();b.textContent="Adicionado ✓";setTimeout(function(){b.textContent="Adicionar ao carrinho"},1200)}
+  var v=e.target.closest("[data-ir]");if(v)ir(v.dataset.ir,true)
+});
+$("itens").onclick=function(e){var m=e.target.dataset.m,p=e.target.dataset.p;if(p)cart[p]++;if(m){cart[m]--;if(cart[m]<=0)delete cart[m]}salvar();carrinho()};
+$("q").oninput=function(e){if($("home").hidden){history.pushState(null,"",location.pathname);rota()}busca=e.target.value;cat="Todos";desenhar();if(busca)$("catalogo").scrollIntoView()};
+$("abrir").onclick=function(){gaveta(true)};$("fechar").onclick=$("fundo").onclick=function(){gaveta(false)};
+$("limpar").onclick=function(){cart={};salvar();carrinho()};
+// categorias com ilustração
+var amostra={Chuteiras:1,"Tênis":6,Sapatos:11,Roupas:13};
+$("tiles").innerHTML=Object.keys(amostra).map(function(c){var p=pegar(amostra[c]);return '<button class="tile" data-ir="'+c+'"><div class="foto">'+ilus(p)+'</div><b>'+c+'</b></button>'}).join("");
+$("dest").innerHTML=P.filter(function(p){return p.dest}).map(card).join("");
+// banner
+var s=0,pt=$("pontos");
+function slide(i){s=(i+3)%3;$("slides").style.transform="translateX(-"+s*100+"%)";[].forEach.call(pt.children,function(b,j){b.setAttribute("aria-current",j==s)})}
+for(var i=0;i<3;i++){var d=document.createElement("button");d.setAttribute("aria-label","Slide "+(i+1));d.onclick=(function(k){return function(){slide(k)}})(i);pt.appendChild(d)}
+if(!matchMedia("(prefers-reduced-motion:reduce)").matches)setInterval(function(){slide(s+1)},5500);
+// ---- página do produto ----
+// AVALIAÇÕES DA LOJA: no produto, aval:[{nome:"Maria",nota:5,texto:"Gostei muito"}]. FOTOS REAIS: fotos:["fotos/a.jpg","fotos/b.jpg"]
+var tamSel="";
+function tamanhos(p){return p.cat=="Roupas"?(p.tipo=="kit"?["4","6","8","10","12","14"]:["P","M","G","GG"]):["37","38","39","40","41","42","43","44"]}
+function fotos(p){if(p.fotos&&p.fotos.length)return p.fotos.map(function(u){return '<img src="'+u+'" alt="'+p.nome+'">'});
+  var a=p.c[0],b=p.c[1]=="#ffffff"?"#222222":p.c[1];
+  return[ilus(p),ilus(Object.assign({},p,{c:[b,a]})),ilus(Object.assign({},p,{c:["#222222",a]}))]}
+function avals(p){var l=(p.aval||[]).slice();try{l=l.concat(JSON.parse(localStorage.getItem("pf_aval_"+p.id)||"[]"))}catch(e){}return l}
+function est(n){return"★★★★★".slice(0,n)+"☆☆☆☆☆".slice(0,5-n)}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function detalhe(p){
+  var f=fotos(p),a=avals(p),m=a.length?a.reduce(function(t,x){return t+x.nota},0)/a.length:0;
+  $("detalhe").innerHTML='<button class="voltar" id="voltar">← Voltar à loja</button><div class="dgrid"><div><div class="grande foto" id="gr">'+f[0]+'</div><div class="mins">'+f.map(function(x,i){return'<button data-f="'+i+'" aria-current="'+(i==0)+'" aria-label="Foto '+(i+1)+'">'+x+'</button>'}).join("")+'</div>'+(p.fotos?'':'<p class="cont">Fotos ilustrativas. Cores e modelo reais podem variar.</p>')+'</div><div><small>'+p.marca+' · '+p.cat+'</small><h1>'+p.nome+'</h1>'+(a.length?'<div><span class="estrelas" style="margin:0">'+est(Math.round(m))+'</span> '+m.toFixed(1).replace(".",",")+' ('+a.length+(a.length==1?' avaliação)':' avaliações)')+'</div>':'')+(p.preco?'<p class="preco" style="font-size:24px;margin:8px 0">'+p.preco.toLocaleString("pt-BR",{style:"currency",currency:"BRL"})+'</p>':'<p class="cont">Consulte o valor pelo WhatsApp.</p>')+'<b>Tamanho</b><div class="tams" id="tams">'+tamanhos(p).map(function(t){return'<button class="tam" aria-pressed="false">'+t+'</button>'}).join("")+'</div><button class="addd" id="addd">Adicionar ao carrinho</button></div></div>'
+  +'<section class="aval"><h2>Avaliações</h2>'+(a.length?a.map(function(x){return'<div class="rev"><b>'+esc(x.nome)+'</b><span class="estrelas">'+est(x.nota)+'</span><div>'+esc(x.texto)+'</div></div>'}).join(""):'<p class="cont">Ainda não há avaliações. Seja o primeiro a avaliar.</p>')+'<form id="fav"><b>Deixe sua avaliação</b><input id="avn" placeholder="Seu nome" required maxlength="40"><select id="avs" aria-label="Nota"><option value="5">5 estrelas</option><option value="4">4 estrelas</option><option value="3">3 estrelas</option><option value="2">2 estrelas</option><option value="1">1 estrela</option></select><textarea id="avt" rows="3" placeholder="Conte como foi o produto" required maxlength="400"></textarea><button class="addd" type="submit">Enviar avaliação</button><small>As avaliações enviadas aqui ficam salvas neste aparelho. Para aparecerem para todos, a loja precisa publicá-las.</small></form></section>';
+  $("voltar").onclick=function(){location.hash=""};
+  $("detalhe").querySelector(".mins").onclick=function(e){var b=e.target.closest("button");if(!b)return;$("gr").innerHTML=f[b.dataset.f];[].forEach.call(this.children,function(x){x.setAttribute("aria-current",x==b)})};
+  $("tams").onclick=function(e){var b=e.target.closest(".tam");if(!b)return;tamSel=b.textContent;[].forEach.call(this.children,function(x){x.setAttribute("aria-pressed",x==b)})};
+  $("addd").onclick=function(){var b=this;if(!tamSel){b.textContent="Escolha um tamanho";setTimeout(function(){b.textContent="Adicionar ao carrinho"},1500);return}
+    var k=p.id+"|"+tamSel;cart[k]=(cart[k]||0)+1;salvar();carrinho();b.textContent="Adicionado ✓";setTimeout(function(){b.textContent="Adicionar ao carrinho"},1200)};
+  $("fav").onsubmit=function(e){e.preventDefault();var l=[];try{l=JSON.parse(localStorage.getItem("pf_aval_"+p.id)||"[]")}catch(x){}
+    l.push({nome:$("avn").value.trim(),nota:+$("avs").value,texto:$("avt").value.trim()});try{localStorage.setItem("pf_aval_"+p.id,JSON.stringify(l))}catch(x){}
+    detalhe(p);$("detalhe").querySelector(".aval").scrollIntoView()}
+}
+function rota(){var m=location.hash.match(/^#p\/(\d+)/),p=m&&pegar(m[1]);
+  $("home").hidden=!!p;$("detalhe").hidden=!p;
+  if(p){tamSel="";detalhe(p);document.title=p.nome+" | PF Esportes";scrollTo(0,0)}else document.title="Loja | PF Esportes – Colíder - MT"}
+window.addEventListener("hashchange",rota);
+slide(0);desenhar();carrinho();rota();
+</script>
+</body>
+</html>
